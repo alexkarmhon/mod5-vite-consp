@@ -1,0 +1,5 @@
+.listWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: auto;
+}
