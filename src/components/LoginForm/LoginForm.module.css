@@ -1,0 +1,17 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+.title{
+  text-align: center;
+  margin-bottom: 0;
+}

@@ -1,0 +1,14 @@
+.button {
+  display: inline-block;
+  width: max-content;
+  padding: 4px;
+  border: 2px solid teal;
+}
+
+.btnContent{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-size: 12px;
+}

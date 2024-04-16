@@ -1,4 +1,5 @@
-import { Link, Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+import { NavLink, Route, Routes } from 'react-router-dom';
 
 import clsx from 'clsx';
 
@@ -7,7 +8,10 @@ import Home from '../../pages/Home';
 import NotFound from '../../pages/NotFound';
 import ProductDetails from '../../pages/ProductDetails';
 import Products from '../../pages/Products';
+import Button from '../Button/Button';
+import LoginForm from '../LoginForm/LoginForm';
 import Mission from '../Mission';
+import Modal from '../Modal/Modal';
 import Reviews from '../Reviews';
 import Team from '../Team';
 import css from './App.module.css';
@@ -17,35 +21,46 @@ const buildLinkClass = ({ isActive }) => {
 };
 
 const App = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
   return (
     <div className={css.container}>
       <header className={css.header}>
-        <Link to="/" className={buildLinkClass}>
-          <p className={css.logo}>
-            <span role="image" aria-label="shirt icon">
-              👔
-            </span>{' '}
-            MerchStore
-          </p>
-        </Link>
+        <p className={css.logo}>
+          <span role="image" aria-label="shirt icon">
+            👔
+          </span>{' '}
+          MerchStore
+        </p>
+
         <nav className={css.nav}>
           <div className={css.linkWrapper}>
-            <Link to="/" className={buildLinkClass}>
+            <NavLink to="/" className={buildLinkClass}>
               Home
-            </Link>
+            </NavLink>
           </div>
           <div className={css.linkWrapper}>
-            <Link to="/about" className={buildLinkClass}>
+            <NavLink to="/about" className={buildLinkClass}>
               About
-            </Link>
+            </NavLink>
           </div>
           <div className={css.linkWrapper}>
-            <Link to="/products" className={buildLinkClass}>
+            <NavLink to="/products" className={buildLinkClass}>
               Products
-            </Link>
+            </NavLink>
           </div>
         </nav>
+        <Button type={'button'} onClick={toggleModal}>
+          LogIn
+        </Button>
       </header>
+      {isModalOpen && (
+        <Modal onClose={toggleModal}>
+          {<LoginForm closeModal={toggleModal} />}
+        </Modal>
+      )}
 
       <Routes>
         <Route path="/" element={<Home />} />
