@@ -1,24 +1,18 @@
 import { useState } from 'react';
-import { NavLink, Route, Routes } from 'react-router-dom';
-
-import clsx from 'clsx';
+import { Route, Routes } from 'react-router-dom';
 
 import About from '../../pages/About';
 import Home from '../../pages/Home';
 import NotFound from '../../pages/NotFound';
 import ProductDetails from '../../pages/ProductDetails';
 import Products from '../../pages/Products';
-import Button from '../Button/Button';
+import AppBar from '../AppBar/AppBar';
 import LoginForm from '../LoginForm/LoginForm';
 import Mission from '../Mission';
 import Modal from '../Modal/Modal';
 import Reviews from '../Reviews';
 import Team from '../Team';
 import css from './App.module.css';
-
-const buildLinkClass = ({ isActive }) => {
-  return clsx(css.link, isActive && css.active);
-};
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,35 +21,7 @@ const App = () => {
   };
   return (
     <div className={css.container}>
-      <header className={css.header}>
-        <p className={css.logo}>
-          <span role="image" aria-label="shirt icon">
-            👔
-          </span>{' '}
-          MerchStore
-        </p>
-
-        <nav className={css.nav}>
-          <div className={css.linkWrapper}>
-            <NavLink to="/" className={buildLinkClass}>
-              Home
-            </NavLink>
-          </div>
-          <div className={css.linkWrapper}>
-            <NavLink to="/about" className={buildLinkClass}>
-              About
-            </NavLink>
-          </div>
-          <div className={css.linkWrapper}>
-            <NavLink to="/products" className={buildLinkClass}>
-              Products
-            </NavLink>
-          </div>
-        </nav>
-        <Button type={'button'} onClick={toggleModal}>
-          LogIn
-        </Button>
-      </header>
+      <AppBar openModal={toggleModal} />
       {isModalOpen && (
         <Modal onClose={toggleModal}>
           {<LoginForm closeModal={toggleModal} />}
@@ -70,7 +36,7 @@ const App = () => {
           <Route path="reviews" element={<Reviews />} />
         </Route>
         <Route path="/products" element={<Products />} />
-        <Route path="/products/:productId" element={<ProductDetails />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

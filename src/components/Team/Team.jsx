@@ -2,13 +2,26 @@ import css from './Team.module.css';
 
 const Team = () => {
   return (
-    <div className={css.container}>
+    <section className={css.container}>
       <h2>Team</h2>
-      <h3>Alex Karm-Hon</h3>
-      <p>
-        Junior React dev(In future...maybe...){' '}
-      </p>
-    </div>
+      <ul>
+        <li>
+          <b>CEO</b> - Olexii Karm-Hon
+        </li>
+        <li>
+          <b>Sales</b> - Irina Karm-Hon
+        </li>
+        <li>
+          <b>Product</b> - Toha Iron
+        </li>
+        <li>
+          <b>Marketing</b> - Tania Hlam
+        </li>
+        <li>
+          <b>Engineering</b> - Tony Struck
+        </li>
+      </ul>
+    </section>
   );
 };
 
